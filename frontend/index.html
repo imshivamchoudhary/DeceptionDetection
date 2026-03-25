@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeceptIQ Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>👁️ DeceptIQ <span class="version-badge">v2.0</span></h1>
+        <p>Real-time Emotion & Micro-Expression Analysis</p>
+    </header>
+
+    <main class="dashboard">
+        
+        <section class="left-column">
+            
+            <div class="video-container">
+                <video id="video" autoplay muted playsinline></video>
+                <canvas id="overlay"></canvas>
+            </div>
+
+            <div class="panel">
+                <h2>Live Analysis</h2>
+                <div class="button-group">
+                    <button class="btn primary" onclick="startCamera()">Start Camera</button>
+                    <button class="btn secondary" onclick="stopCamera()">Stop</button>
+                </div>
+
+                <hr>
+
+                <h2>Batch Video Analysis</h2>
+                <div class="upload-group">
+                    <input type="file" id="videoFile" accept="video/mp4,video/avi,video/mov,video/webm">
+                    <button class="btn success" id="uploadBtn" onclick="uploadVideo()">Analyze Video File</button>
+                    <p id="uploadStatus" class="hidden text-muted">Uploading and analyzing... this may take a moment.</p>
+                </div>
+            </div>
+            
+        </section>
+
+        <section class="right-column">
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">Dominant Emotion</span>
+                    <strong id="liveEmotion" class="metric-value">-</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Deception Score</span>
+                    <strong id="liveScore" class="metric-value highlight-blue">0</strong>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">Verdict</span>
+                    <strong id="liveVerdict" class="metric-value">-</strong>
+                </div>
+            </div>
+
+            <div id="videoResultsPanel" class="panel hidden">
+                <h2>Video Analysis Report</h2>
+                <div class="risk-display">
+                    <div id="riskScoreVal" class="huge-score">0</div>
+                    <div class="risk-text">
+                        <div id="riskLevelVal" class="risk-level">Level</div>
+                        <span class="text-muted">Overall Deception Risk</span>
+                    </div>
+                </div>
+                <h3>Key Indicators</h3>
+                <ul id="indicatorsList"></ul>
+            </div>
+
+            <div class="panel chart-container">
+                <canvas id="emotionChart"></canvas>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
